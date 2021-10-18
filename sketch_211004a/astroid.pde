@@ -3,7 +3,7 @@ class Asteroid extends GameObject {
 
   Asteroid () {
     lives = 1;
-
+score = 21;
     loc = new PVector (random(0, width), random(0, height));
     velocity= new PVector(0, 1);
     velocity.rotate(random(0, TWO_PI));
@@ -38,11 +38,13 @@ class Asteroid extends GameObject {
         if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y)<= size/2 +myObj.size) {
           myObj.lives = 0;
           lives =0;
+           score= score - 1 ;
+           
           if(size > 25){
  
           myObject.add(new Asteroid(size/2, loc.x, loc.y));
           myObject.add(new Asteroid(size/2, loc.x, loc.y));
-          score= score +1;
+         
           }
           
           
@@ -70,11 +72,12 @@ class Asteroid extends GameObject {
 
           lives = lives - 1;
           print (lives);
+           score= score -1;
           if(size > 25){
  
           myObject.add(new Asteroid(size/2, loc.x, loc.y));
           myObject.add(new Asteroid(size/2, loc.x, loc.y));
-          score= score +1;
+         
           }
         }
   
@@ -82,8 +85,9 @@ class Asteroid extends GameObject {
     }
       i ++;
   }
-    if (score == 81){
+    if (score == 0){
    mode = GAMEOVER;
+   win = true;
   }
   }
   }
